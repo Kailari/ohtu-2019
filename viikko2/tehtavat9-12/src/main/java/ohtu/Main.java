@@ -8,13 +8,7 @@ public class Main {
 
     public static void main(String[] args) {
         ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
-
-        IKirjanpito kirjanpito = new Kirjanpito();
-        IVarasto varasto = new Varasto(kirjanpito);
-        IPankki pankki = new Pankki(kirjanpito);
-        IViitegeneraattori viitegeneraattori = context.getBean(Viitegeneraattori.class);
-
-        Kauppa kauppa = new Kauppa(varasto, pankki, viitegeneraattori);
+        Kauppa kauppa = context.getBean(Kauppa.class);
 
         // kauppa hoitaa yhden asiakkaan kerrallaan seuraavaan tapaan:
         kauppa.aloitaAsiointi();
@@ -33,6 +27,7 @@ public class Main {
         kauppa.tilimaksu("Arto Vihavainen", "3425-1652");
 
         // kirjanpito
+        IKirjanpito kirjanpito = context.getBean(Kirjanpito.class);
         for (String tapahtuma : kirjanpito.getTapahtumat()) {
             System.out.println(tapahtuma);
         }
