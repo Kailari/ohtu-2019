@@ -13,23 +13,3 @@ public class Main {
         laskin.suorita();
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//        //Koe k = ctx.getBean(Koe.class);
-//        Koe k = (Koe)ctx.getBean("koe");
-//        k.foo();
-//        
-//        IO io = ctx.getBean(IO.class);
-//        io.print("paska");
