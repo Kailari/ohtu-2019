@@ -61,17 +61,37 @@ public class Stepdefs {
         logInWith(username, password);
     }
 
-    @Then("user is not created and error message is displayed")
-    public void userIsNotCreatedAndErrorMessageIsDisplayed() {
-        pageHasContent("invalid username or password");
-        pageHasContent("Give your credentials to login");
-    }
-
     @Given("command new user is selected")
     public void commandNewUserIsSelected() {
         driver.get(baseUrl);
         WebElement element = driver.findElement(By.linkText("register new user"));
         element.click();
+    }
+
+    @Given("user with username {string} with password {string} is successfully created")
+    public void userWithUsernameWithPasswordIsSuccessfullyCreated(String username, String password) {
+        driver.get(baseUrl);
+        WebElement element = driver.findElement(By.linkText("register new user"));
+        element.click();
+        registerWith(username, password);
+    }
+
+    @When("the newly created username {string} and correct password {string} are entered")
+    public void theNewlyCreatedUsernameAndCorrectPasswordAreEntered(String username, String password) {
+        logInWith(username, password);
+    }
+
+    @Given("user with username {string} and password {string} is tried to be created")
+    public void userWithUsernameAndPasswordIsTriedToBeCreated(String username, String password) {
+        driver.get(baseUrl);
+        WebElement element = driver.findElement(By.linkText("register new user"));
+        element.click();
+        registerWith(username, password);
+    }
+
+    @When("nonexistent username {string} and password {string} are given")
+    public void nonexistentUsernameAndPasswordAreGiven(String username, String password) {
+        logInWith(username, password);
     }
 
     @When("a valid username {string} and password {string} and matching password confirmation are entered")
