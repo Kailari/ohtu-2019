@@ -43,6 +43,8 @@ public class Tester {
         element.sendKeys("jaskajokunen");
         element = driver.findElement(By.name("password"));
         element.sendKeys("kissatkoiratkirahvit123");
+        element = driver.findElement(By.name("passwordConfirmation"));
+        element.sendKeys("kissatkoiratkirahvit123");
 
         element = driver.findElement(By.name("signup"));
         element.submit();
