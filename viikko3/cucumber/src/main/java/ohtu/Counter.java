@@ -7,7 +7,7 @@ public class Counter {
    public void increase(){
         val++;
    } 
-   
+
    public void reset(){
         val = 0;
    }    
