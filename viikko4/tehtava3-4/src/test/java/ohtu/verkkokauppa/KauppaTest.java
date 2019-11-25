@@ -6,9 +6,14 @@ import org.junit.Test;
 import static org.mockito.Mockito.*;
 
 public class KauppaTest {
+    private static final Tuote MAITO = new Tuote(1, "maito", 5);
+    private static final Tuote KISSA = new Tuote(2, "kissa", 50);
+    private static final Tuote KOIRA = new Tuote(3, "koira", 100);
+
     private Kauppa kauppa;
     private PankkiInterface pankki;
-    ViitegeneraattoriInterface viitegeneraattori;
+    private ViitegeneraattoriInterface viitegeneraattori;
+    private VarastoInterface varasto;
 
     @Before
     public void beforeEach() {
@@ -16,13 +21,13 @@ public class KauppaTest {
         viitegeneraattori = mock(ViitegeneraattoriInterface.class);
         when(viitegeneraattori.uusi()).thenReturn(1337);
 
-        VarastoInterface varasto = mock(VarastoInterface.class);
+        varasto = mock(VarastoInterface.class);
         when(varasto.saldo(1)).thenReturn(10);
         when(varasto.saldo(2)).thenReturn(20);
         when(varasto.saldo(3)).thenReturn(0);
-        when(varasto.haeTuote(1)).thenReturn(new Tuote(1, "maito", 5));
-        when(varasto.haeTuote(2)).thenReturn(new Tuote(1, "kissa", 50));
-        when(varasto.haeTuote(3)).thenReturn(new Tuote(1, "koira", 100));
+        when(varasto.haeTuote(1)).thenReturn(MAITO);
+        when(varasto.haeTuote(2)).thenReturn(KISSA);
+        when(varasto.haeTuote(3)).thenReturn(KOIRA);
 
         kauppa = new Kauppa(varasto, pankki, viitegeneraattori);
     }
@@ -106,5 +111,15 @@ public class KauppaTest {
 
         verify(viitegeneraattori, times(3))
                 .uusi();
+    }
+
+    @Test
+    public void koristaPoistaminenPalauttaaOikeanTuotteenVarastoon() {
+        kauppa.aloitaAsiointi();
+        kauppa.lisaaKoriin(1);
+        kauppa.poistaKorista(1);
+
+        verify(varasto, times(1))
+                .palautaVarastoon(MAITO);
     }
 }
