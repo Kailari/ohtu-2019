@@ -1,23 +1,26 @@
-
-apply plugin: 'java'
-
-apply plugin: 'application'
+plugins {
+    id 'java'
+    id 'application'
+    id 'jacoco'
+}
 
 repositories {
     jcenter()
 }
 
 dependencies {
-    compile 'com.google.guava:guava:28.1-jre'
-    compile group: 'org.springframework', name: 'spring-core', version:'5.2.0.RELEASE'
-    compile group: 'org.springframework', name: 'spring-context', version:'5.2.0.RELEASE'
-    compile group: 'org.springframework', name: 'spring-context-support', version:'5.2.0.RELEASE'
-    compile group: 'org.springframework', name: 'spring-beans', version:'5.2.0.RELEASE'
-    testCompile 'org.mockito:mockito-core:3.1.0'
-    testCompile 'junit:junit:4.12'
+    implementation "com.google.guava:guava:28.1-jre"
+    implementation "org.springframework:spring-core:5.2.0.RELEASE"
+    implementation "org.springframework:spring-context:5.2.0.RELEASE"
+    implementation "org.springframework:spring-context-support:5.2.0.RELEASE"
+    implementation "org.springframework:spring-beans:5.2.0.RELEASE"
+    testImplementation "org.mockito:mockito-core:3.1.0"
+    testImplementation "junit:junit:4.12"
 }
 
-mainClassName = 'ohtu.Main'
+application {
+    mainClassName = 'ohtu.Main'
+}
 
 run {
     standardInput = System.in

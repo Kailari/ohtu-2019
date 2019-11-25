@@ -8,11 +8,12 @@ import static org.mockito.Mockito.*;
 public class KauppaTest {
     private Kauppa kauppa;
     private PankkiInterface pankki;
+    ViitegeneraattoriInterface viitegeneraattori;
 
     @Before
     public void beforeEach() {
         pankki = mock(PankkiInterface.class);
-        ViitegeneraattoriInterface viitegeneraattori = mock(ViitegeneraattoriInterface.class);
+        viitegeneraattori = mock(ViitegeneraattoriInterface.class);
         when(viitegeneraattori.uusi()).thenReturn(1337);
 
         VarastoInterface varasto = mock(VarastoInterface.class);
@@ -76,5 +77,34 @@ public class KauppaTest {
                             eq("12345"),
                             anyString(),
                             eq(50));
+    }
+
+    @Test
+    public void asioinninAloittaminenUudelleenOstonJalkeenNollaaOstoskorin() {
+        kauppa.aloitaAsiointi();
+        kauppa.lisaaKoriin(1);
+        kauppa.tilimaksu("pertti", "12345");
+
+        kauppa.aloitaAsiointi();
+        kauppa.lisaaKoriin(2);
+        kauppa.tilimaksu("pertti", "12345");
+        verify(pankki, times(1))
+                .tilisiirto(anyString(),
+                            anyInt(),
+                            anyString(),
+                            anyString(),
+                            eq(50));
+    }
+
+    @Test
+    public void jokaiselleMaksutapahtumallePyydetaanUusiViite() {
+        for (int i = 0; i < 3; ++i) {
+            kauppa.aloitaAsiointi();
+            kauppa.lisaaKoriin(1);
+            kauppa.tilimaksu("pertti", "12345");
+        }
+
+        verify(viitegeneraattori, times(3))
+                .uusi();
     }
 }
