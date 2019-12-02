@@ -1,0 +1,5 @@
+Retrospektiivi voidaan pitää monella tapaa. Tähänkin on kehittynyt useita erilaisia *parhaita käytänteitä*. Tällaisia *retrospektiivitekniikoita* ovat muunmuassa "Start, Stop, Continue, More of, Less of Wheel" ja "Glad, Sad, Mad".
+
+"Start, Stop, Continue, More of, Less of Wheel" on nopea tapa käsitellä tiimin toimintaperiaatteita. Ideana on retrospektiivin aikana tehdä valkotaululle "pyörä", jossa on nimen mukaiset viisi alakohtaa. Näihin alakohtiin kerätään mietteitä/kommentteja tiimin toiminnasta ja lopuksi voidaan sopia mitä muutoksia ongelmien korjaaminen tai hyvien toimintatapojen korostamiseksi voidaan tehdä.
+
+Puolestaan "Glad, Sad, Mad" kategorisoi risut ja ruusut kolmeen kategoriaan viiden sijaan. Kommentit kirjoitetaan lyhyinä, tiiviissä muodossa esim. post-it lapuille ja kerätään nimen mukaisiin kolmeen kategoriaan. Samaan ongelmaan liittyvät laput kerätään yhteen ja tiimi äänestää mistä ryhmistä he haluavat keskustella. Tämän jälkeen tiimi keskustelee äänten perusteella järjestyksessä aiheista, kunnes tunti on kulunut tai aiheet loppuvat.
