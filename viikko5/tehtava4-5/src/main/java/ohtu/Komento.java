@@ -12,8 +12,7 @@ public abstract class Komento {
         this.edellinenSyote = syote;
     }
 
-    public void peru() {
-    }
+    public abstract void peru();
 
     public static class Summa extends Komento {
         public Summa(Sovelluslogiikka sovellus) {
@@ -24,6 +23,11 @@ public abstract class Komento {
         public void suorita(int syote) {
             super.suorita(syote);
             this.sovellus.plus(syote);
+        }
+
+        @Override
+        public void peru() {
+            this.sovellus.miinus(edellinenSyote);
         }
     }
 
@@ -37,6 +41,11 @@ public abstract class Komento {
             super.suorita(syote);
             this.sovellus.miinus(syote);
         }
+
+        @Override
+        public void peru() {
+            this.sovellus.plus(edellinenSyote);
+        }
     }
 
     public static class Nollaa extends Komento {
@@ -46,8 +55,15 @@ public abstract class Komento {
 
         @Override
         public void suorita(int syote) {
-            super.suorita(syote);
+            this.edellinenSyote = this.sovellus.tulos();
             this.sovellus.nollaa();
+        }
+
+
+        @Override
+        public void peru() {
+            this.sovellus.nollaa();
+            this.sovellus.plus(edellinenSyote);
         }
     }
 }
