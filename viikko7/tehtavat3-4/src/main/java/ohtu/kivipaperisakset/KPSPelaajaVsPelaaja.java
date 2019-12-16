@@ -2,11 +2,19 @@ package ohtu.kivipaperisakset;
 
 import java.util.Scanner;
 
-public class KPSPelaajaVsPelaaja {
+public class KPSPelaajaVsPelaaja extends KPSPeli {
 
     private static final Scanner scanner = new Scanner(System.in);
 
-    public void pelaa() {
+    public static KPSPeli uusiPeli() {
+        return new KPSPelaajaVsPelaaja();
+    }
+
+    private KPSPelaajaVsPelaaja() {
+    }
+
+    @Override
+    public void aloita() {
         Tuomari tuomari = new Tuomari();
 
         System.out.print("Ensimmäisen pelaajan siirto: ");
@@ -21,7 +29,7 @@ public class KPSPelaajaVsPelaaja {
 
             System.out.print("Ensimmäisen pelaajan siirto: ");
             ekanSiirto = scanner.nextLine();
-            
+
             System.out.print("Toisen pelaajan siirto: ");
             tokanSiirto = scanner.nextLine();
         }
