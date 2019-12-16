@@ -1,20 +1,20 @@
 package ohtu.kivipaperisakset;
 
-public class Tekoaly {
-
-    int siirto;
+public class Tekoaly implements Pelaaja {
+    private int siirto;
 
     public Tekoaly() {
-        siirto = 0;
+        this.siirto = 0;
     }
 
+    @Override
     public String annaSiirto() {
-        siirto++;
-        siirto = siirto % 3;
+        this.siirto++;
+        this.siirto = this.siirto % 3;
 
-        if (siirto == 0) {
+        if (this.siirto == 0) {
             return "k";
-        } else if (siirto == 1) {
+        } else if (this.siirto == 1) {
             return "p";
         } else {
             return "s";

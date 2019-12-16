@@ -3,43 +3,26 @@ package ohtu.kivipaperisakset;
 import java.util.Scanner;
 
 public class KPSPelaajaVsPelaaja extends KPSPeli {
-
-    private static final Scanner scanner = new Scanner(System.in);
-
     public static KPSPeli uusiPeli() {
         return new KPSPelaajaVsPelaaja();
     }
 
+    private final Pelaaja ensimmainenPelaaja;
+    private final Pelaaja toinenPelaaja;
+
     private KPSPelaajaVsPelaaja() {
+        var scanner = new Scanner(System.in);
+        this.ensimmainenPelaaja = new IhmisPelaaja(true, scanner);
+        this.toinenPelaaja = new IhmisPelaaja(false, scanner);
     }
 
     @Override
-    public void aloita() {
-        Tuomari tuomari = new Tuomari();
-
-        System.out.print("Ensimmäisen pelaajan siirto: ");
-        String ekanSiirto = scanner.nextLine();
-        System.out.print("Toisen pelaajan siirto: ");
-        String tokanSiirto = scanner.nextLine();
-
-        while (onkoOkSiirto(ekanSiirto) && onkoOkSiirto(tokanSiirto)) {
-            tuomari.kirjaaSiirto(ekanSiirto, tokanSiirto);
-            System.out.println(tuomari);
-            System.out.println();
-
-            System.out.print("Ensimmäisen pelaajan siirto: ");
-            ekanSiirto = scanner.nextLine();
-
-            System.out.print("Toisen pelaajan siirto: ");
-            tokanSiirto = scanner.nextLine();
-        }
-
-        System.out.println();
-        System.out.println("Kiitos!");
-        System.out.println(tuomari);
+    protected String ensimmaisenSiirto() {
+        return ensimmainenPelaaja.annaSiirto();
     }
 
-    private static boolean onkoOkSiirto(String siirto) {
-        return "k".equals(siirto) || "p".equals(siirto) || "s".equals(siirto);
+    @Override
+    protected String toisenSiirto() {
+        return toinenPelaaja.annaSiirto();
     }
 }
